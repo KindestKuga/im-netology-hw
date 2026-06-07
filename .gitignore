@@ -1,0 +1,12 @@
+.env
+*.env
+*.secret
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+tmp/
+.cache/
+.vscode/
+.idea/
