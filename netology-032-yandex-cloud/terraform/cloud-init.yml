@@ -1,0 +1,24 @@
+#cloud-config
+users:
+  - name: ${vm_user}
+    groups: sudo
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - python3
+  - ca-certificates
+
+write_files:
+  - path: /etc/motd
+    permissions: "0644"
+    owner: root:root
+    content: |
+      Netology homework 032
+      Managed by Terraform.
+      Apps are installed by Ansible, not cloud-init.

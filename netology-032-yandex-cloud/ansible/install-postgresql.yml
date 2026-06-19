@@ -1,0 +1,73 @@
+---
+- name: Install and check PostgreSQL on YC DB server
+  hosts: yc_db
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Show target host info
+      ansible.builtin.debug:
+        msg:
+          - "inventory_hostname={{ inventory_hostname }}"
+          - "ansible_host={{ ansible_host }}"
+          - "distribution={{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+          - "kernel={{ ansible_facts['kernel'] }}"
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        lock_timeout: 120
+
+    - name: Install PostgreSQL
+      ansible.builtin.apt:
+        name:
+          - postgresql
+          - postgresql-client
+        state: present
+        lock_timeout: 120
+
+    - name: Enable and start PostgreSQL service
+      ansible.builtin.systemd_service:
+        name: postgresql
+        enabled: true
+        state: started
+
+    - name: Check PostgreSQL systemd active state
+      ansible.builtin.command: systemctl is-active postgresql
+      register: postgresql_active
+      changed_when: false
+
+    - name: Show PostgreSQL systemd active state
+      ansible.builtin.debug:
+        msg: "postgresql.service is-active={{ postgresql_active.stdout }}"
+
+    - name: Check PostgreSQL clusters
+      ansible.builtin.command: pg_lsclusters --no-header
+      register: postgresql_clusters
+      changed_when: false
+
+    - name: Show PostgreSQL clusters
+      ansible.builtin.debug:
+        var: postgresql_clusters.stdout_lines
+
+    - name: Assert at least one PostgreSQL cluster is online
+      ansible.builtin.assert:
+        that:
+          - postgresql_active.stdout == "active"
+          - "'online' in postgresql_clusters.stdout"
+        success_msg: "PostgreSQL service is active and at least one cluster is online on {{ inventory_hostname }}"
+        fail_msg: "PostgreSQL service or cluster is not healthy on {{ inventory_hostname }}"
+
+    - name: Check PostgreSQL readiness
+      ansible.builtin.command: pg_isready -q -h 127.0.0.1 -p 5432
+      register: pg_isready_result
+      changed_when: false
+      failed_when: false
+
+    - name: Assert PostgreSQL readiness
+      ansible.builtin.assert:
+        that:
+          - pg_isready_result.rc == 0
+        success_msg: "PostgreSQL accepts local connections on {{ inventory_hostname }}"
+        fail_msg: "PostgreSQL is not ready on {{ inventory_hostname }}"

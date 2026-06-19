@@ -1,0 +1,50 @@
+---
+- name: Check nginx service on web servers
+  hosts: yc_web
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Collect service facts
+      ansible.builtin.service_facts:
+
+    - name: Assert nginx is running
+      ansible.builtin.assert:
+        that:
+          - "'nginx.service' in ansible_facts.services"
+          - "ansible_facts.services['nginx.service'].state == 'running'"
+        success_msg: "nginx is running on {{ inventory_hostname }}"
+        fail_msg: "nginx is not running on {{ inventory_hostname }}"
+
+- name: Check PostgreSQL service on DB server
+  hosts: yc_db
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Check PostgreSQL systemd active state
+      ansible.builtin.command: systemctl is-active postgresql
+      register: postgresql_active
+      changed_when: false
+      failed_when: false
+
+    - name: Check PostgreSQL clusters
+      ansible.builtin.command: pg_lsclusters --no-header
+      register: postgresql_clusters
+      changed_when: false
+      failed_when: false
+
+    - name: Check PostgreSQL readiness
+      ansible.builtin.command: pg_isready -q -h 127.0.0.1 -p 5432
+      register: pg_isready_result
+      changed_when: false
+      failed_when: false
+
+    - name: Assert PostgreSQL is healthy
+      ansible.builtin.assert:
+        that:
+          - postgresql_active.stdout == "active"
+          - "'online' in postgresql_clusters.stdout"
+          - pg_isready_result.rc == 0
+        success_msg: "PostgreSQL is active, cluster is online, and pg_isready is OK on {{ inventory_hostname }}"
+        fail_msg: "PostgreSQL health check failed on {{ inventory_hostname }}"

@@ -1,0 +1,67 @@
+---
+- name: Install and configure nginx on YC web servers
+  hosts: yc_web
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Show target host info
+      ansible.builtin.debug:
+        msg:
+          - "inventory_hostname={{ inventory_hostname }}"
+          - "ansible_host={{ ansible_host }}"
+          - "distribution={{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+          - "kernel={{ ansible_facts['kernel'] }}"
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        lock_timeout: 120
+
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        lock_timeout: 120
+
+    - name: Create simple homework index page
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          Netology homework 032
+          Host: {{ inventory_hostname }}
+          Private IP: {{ ansible_facts['default_ipv4']['address'] }}
+          Managed by: Ansible
+          Service: nginx
+
+    - name: Enable and start nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        state: started
+
+    - name: Check nginx service facts
+      ansible.builtin.service_facts:
+
+    - name: Assert nginx service is running
+      ansible.builtin.assert:
+        that:
+          - "'nginx.service' in ansible_facts.services"
+          - "ansible_facts.services['nginx.service'].state == 'running'"
+        success_msg: "nginx is installed and running on {{ inventory_hostname }}"
+        fail_msg: "nginx is not running on {{ inventory_hostname }}"
+
+    - name: Check local HTTP response from nginx
+      ansible.builtin.uri:
+        url: http://127.0.0.1/
+        return_content: true
+        status_code: 200
+      register: nginx_http_check
+
+    - name: Show nginx HTTP response
+      ansible.builtin.debug:
+        var: nginx_http_check.content

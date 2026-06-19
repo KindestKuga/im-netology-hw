@@ -1,12 +1,89 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# Logs/cache/tmp
+*.log
+tmp/
+.cache/
+
+# Environment/secrets
 .env
+.env.*
 *.env
 *.secret
 *.key
 *.pem
 *.p12
 *.pfx
+*.kdbx
+*.age
 secrets/
-tmp/
-.cache/
-.vscode/
-.idea/
+
+# Terraform local cache/state/private files
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/*.tfstate
+**/*.tfstate.*
+**/terraform.tfvars
+**/terraform.tfvars.json
+**/*.tfvars
+**/*.auto.tfvars
+**/*.auto.tfvars.json
+**/.terraformrc
+**/terraform.rc
+**/tfplan
+**/tfdestroy
+**/*.tfplan
+**/crash.log
+**/crash.*.log
+**/override.tf
+**/override.tf.json
+**/*_override.tf
+**/*_override.tf.json
+**/.terraform.d/
+.terraform.d/
+
+# Ansible
+**/.ansible/
+**/artifacts/
+**/*.retry
+**/group_vars/**/vault.yml
+**/host_vars/**/vault.yml
+*.vault
+
+# Kubernetes secrets / kubeconfigs
+kubeconfig*
+*.kubeconfig
+*.kube.yaml
+*.k8s.yaml
+**/secrets.yaml
+**/*secret*.yaml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Local backup files
+*.bak.*
+.gitignore.bak.*
+
+# Local helper templates
+HOMEWORK_README_TEMPLATE.md
+
+# Local private notes
+**/docs/private/

@@ -1,0 +1,51 @@
+# Terraform runtime and state
+.terraform/
+.terraform.d/
+.terraformrc
+terraform.rc
+
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+
+crash.log
+crash.*.log
+
+# Terraform local variables and plans
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+tfplan
+*.tfplan
+tfdestroy
+*.tfdestroy
+
+# Terraform local overrides and backend config
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+backend.hcl
+
+# Ansible generated files
+ansible/inventory.yml
+.ansible/
+*.retry
+
+# Local reports and raw command outputs
+artifacts/
+
+# Local env and secrets
+.env
+.env.*
+*.env
+*.secret
+
+service-account-key.json
+authorized-key.json
+authorized_key.json
+*.pem
+*.key
