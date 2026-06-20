@@ -1,0 +1,32 @@
+workflow:
+  name: "Netology homework: $ACTIVE_HOMEWORK"
+  rules:
+    - changes:
+        - .gitlab-ci.yml
+        - netology-033-gitlab/**/*
+      variables:
+        ACTIVE_HOMEWORK: "netology-033-gitlab"
+        APP_DIR: "netology-033-gitlab"
+        BUILD_ARTIFACT_PATH: "netology-033-gitlab/build/netology-gitlab-app"
+      when: always
+
+    # Example for the next homework:
+    #
+    # - changes:
+    #     - .gitlab-ci.yml
+    #     - netology-034-/**/*
+    #   variables:
+    #     ACTIVE_HOMEWORK: "netology-034-"
+    #     APP_DIR: "netology-034-"
+    #     BUILD_ARTIFACT_PATH: "netology-034-/build/app"
+    #   when: always
+
+    - when: never
+
+variables:
+  ACTIVE_HOMEWORK: "none"
+  APP_DIR: "."
+  BUILD_ARTIFACT_PATH: "build/netology-gitlab-app"
+
+include:
+  - local: "netology-033-gitlab/.gitlab-ci.yml"

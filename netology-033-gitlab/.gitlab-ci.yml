@@ -1,0 +1,65 @@
+stages:
+  - test
+  - build
+
+variables:
+  APP_DIR: "."
+  APP_NAME: "netology-gitlab-app"
+  BUILD_DIR: "build"
+  BINARY_NAME: "netology-gitlab-app"
+  BUILD_ARTIFACT_PATH: "build/netology-gitlab-app"
+
+  GO_IMAGE: "golang:1.22-alpine"
+  DOCKER_CLI_IMAGE: "docker:27-cli"
+
+  DOCKER_HOST: "unix:///var/run/docker.sock"
+  DOCKER_TLS_CERTDIR: ""
+
+  APP_IMAGE_TAG: "${CI_PROJECT_PATH_SLUG}-${APP_NAME}:${CI_COMMIT_SHORT_SHA}"
+
+default:
+  tags:
+    - docker
+    - lab
+
+go_test:
+  stage: test
+  image: "$GO_IMAGE"
+  rules:
+    - changes:
+        - "**/*.go"
+        - "netology/netology-033-gitlab/**/*.go"
+    - when: never
+  before_script:
+    - go version
+  script:
+    - cd "$APP_DIR"
+    - go test ./...
+
+go_build:
+  stage: build
+  image: "$GO_IMAGE"
+  needs: []
+  before_script:
+    - go version
+  script:
+    - cd "$APP_DIR"
+    - mkdir -p "$BUILD_DIR"
+    - go build -o "$BUILD_DIR/$BINARY_NAME" .
+  artifacts:
+    name: "${CI_JOB_NAME}-${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - "$BUILD_ARTIFACT_PATH"
+    expire_in: 1 week
+
+docker_build:
+  stage: build
+  image: "$DOCKER_CLI_IMAGE"
+  needs: []
+  script:
+    - cd "$APP_DIR"
+    - test -S /var/run/docker.sock
+    - docker version
+    - docker build -t "$APP_IMAGE_TAG" .
+  after_script:
+    - docker image rm "$APP_IMAGE_TAG" || true
