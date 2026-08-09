@@ -10,6 +10,7 @@
 |---|---|---|
 | [netology-032-yandex-cloud](netology-032-yandex-cloud/README.md) | Terraform, Yandex Cloud, Ansible | инфраструктура, inventory, настройка nginx, проверка результата |
 | [netology-033-gitlab](netology-033-gitlab/README.md) | GitLab CI, GitLab Runner, Docker | runner, pipeline, Go tests, сборка бинарника, Docker build, скриншоты |
+| [netology-036-zabbix](netology-036-zabbix/README.md)               | Zabbix, Terraform, Ansible        | Zabbix Server и Agent 2, шаблоны, UserParameter, dashboard, discovery, скриншоты |
 
 ## Как читать
 

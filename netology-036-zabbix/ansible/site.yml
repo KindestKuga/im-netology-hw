@@ -1,0 +1,332 @@
+---
+- name: Configure Zabbix agents
+  hosts: zabbix_agents
+  become: true
+
+  tasks:
+    - name: Install Zabbix repository
+      ansible.builtin.apt:
+        deb: https://repo.zabbix.com/zabbix/7.0/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.0+debian13_all.deb
+
+    - name: Install Zabbix Agent 2
+      ansible.builtin.apt:
+        name:
+          - iputils-ping
+          - zabbix-agent2
+        state: present
+        update_cache: true
+
+    - name: Configure Zabbix Agent 2
+      ansible.builtin.lineinfile:
+        path: /etc/zabbix/zabbix_agent2.conf
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop:
+        - regexp: '^Server='
+          line: 'Server=10.11.11.163'
+        - regexp: '^Hostname='
+          line: 'Hostname={{ inventory_hostname }}'
+      notify: Restart Zabbix Agent 2
+
+    - name: Install Bash UserParameter script
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../scripts/zabbix-userparameter.sh"
+        dest: /usr/local/bin/zabbix-userparameter
+        owner: root
+        group: root
+        mode: '0755'
+      notify: Restart Zabbix Agent 2
+
+    - name: Configure Bash UserParameter
+      ansible.builtin.copy:
+        dest: /etc/zabbix/zabbix_agent2.d/netology.conf
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          UserParameter=netology.info[*],/usr/local/bin/zabbix-userparameter "$1"
+      notify: Restart Zabbix Agent 2
+
+    - name: Install Python UserParameter script
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../scripts/zabbix-userparameter.py"
+        dest: /usr/local/bin/zabbix-python-userparameter
+        owner: root
+        group: root
+        mode: '0755'
+      notify: Restart Zabbix Agent 2
+
+    - name: Configure Python UserParameter
+      ansible.builtin.copy:
+        dest: /etc/zabbix/zabbix_agent2.d/netology-python.conf
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          UserParameter=netology.python[*],/usr/local/bin/zabbix-python-userparameter "$1" "$2"
+      notify: Restart Zabbix Agent 2
+
+    - name: Validate Zabbix Agent 2 configuration
+      ansible.builtin.command:
+        argv:
+          - /usr/sbin/zabbix_agent2
+          - -T
+          - -c
+          - /etc/zabbix/zabbix_agent2.conf
+      changed_when: false
+
+    - name: Enable Zabbix Agent 2
+      ansible.builtin.systemd_service:
+        name: zabbix-agent2
+        enabled: true
+        state: started
+
+  handlers:
+    - name: Restart Zabbix Agent 2
+      ansible.builtin.systemd_service:
+        name: zabbix-agent2
+        state: restarted
+
+
+- name: Configure Zabbix server
+  hosts: zabbix_server
+  become: true
+
+  vars:
+    zabbix_db_password: >-
+      {{ lookup('file', playbook_dir + '/.zabbix_db_password') | trim }}
+
+  tasks:
+    - name: Install Zabbix server packages
+      ansible.builtin.apt:
+        name:
+          - acl
+          - locales
+          - nginx
+          - php-pgsql
+          - postgresql
+          - zabbix-frontend-php
+          - zabbix-get
+          - zabbix-nginx-conf
+          - zabbix-server-pgsql
+          - zabbix-sql-scripts
+        state: present
+        update_cache: true
+
+    - name: Enable en_US.UTF-8 locale
+      ansible.builtin.lineinfile:
+        path: /etc/locale.gen
+        regexp: '^#?\s*en_US.UTF-8 UTF-8$'
+        line: 'en_US.UTF-8 UTF-8'
+
+    - name: Check available locales
+      ansible.builtin.command:
+        cmd: locale -a
+      register: available_locales
+      changed_when: false
+
+    - name: Generate locales
+      ansible.builtin.command:
+        cmd: locale-gen
+      when: "'en_US.utf8' not in available_locales.stdout_lines"
+      notify:
+        - Restart PHP-FPM
+        - Restart Nginx
+
+    - name: Enable PostgreSQL
+      ansible.builtin.systemd_service:
+        name: postgresql
+        enabled: true
+        state: started
+
+    - name: Prepare Ansible temporary directories
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        owner: "{{ item.owner }}"
+        group: "{{ item.owner }}"
+        mode: '0700'
+      loop:
+        - path: /var/lib/postgresql/.ansible/tmp
+          owner: postgres
+        - path: /var/lib/zabbix
+          owner: zabbix
+        - path: /var/lib/zabbix/.ansible/tmp
+          owner: zabbix
+
+    - name: Check Zabbix database user
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - psql
+          - -tAc
+          - "SELECT 1 FROM pg_roles WHERE rolname='zabbix'"
+      register: zabbix_db_user
+      changed_when: false
+
+    - name: Create Zabbix database user
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - psql
+          - -v
+          - ON_ERROR_STOP=1
+          - -c
+          - "CREATE USER zabbix WITH PASSWORD '{{ zabbix_db_password }}';"
+      when: zabbix_db_user.stdout | trim != "1"
+      no_log: true
+
+    - name: Check Zabbix database
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - psql
+          - -tAc
+          - "SELECT 1 FROM pg_database WHERE datname='zabbix'"
+      register: zabbix_database
+      changed_when: false
+
+    - name: Create Zabbix database
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - createdb
+          - -O
+          - zabbix
+          - zabbix
+      when: zabbix_database.stdout | trim != "1"
+
+    - name: Check Zabbix database schema
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - psql
+          - -d
+          - zabbix
+          - -tAc
+          - "SELECT to_regclass('public.users') IS NOT NULL"
+      register: zabbix_schema
+      changed_when: false
+
+    - name: Import Zabbix database schema
+      become_user: zabbix
+      ansible.builtin.shell: |
+        set -o pipefail
+        zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz |
+          psql -v ON_ERROR_STOP=1 -d zabbix
+      args:
+        executable: /bin/bash
+      when: zabbix_schema.stdout | trim != "t"
+
+    - name: Verify Zabbix database schema
+      become_user: postgres
+      ansible.builtin.command:
+        argv:
+          - psql
+          - -d
+          - zabbix
+          - -tAc
+          - "SELECT to_regclass('public.users') IS NOT NULL"
+      register: zabbix_schema_check
+      changed_when: false
+      failed_when: zabbix_schema_check.stdout | trim != "t"
+
+    - name: Configure Zabbix database connection
+      ansible.builtin.lineinfile:
+        path: /etc/zabbix/zabbix_server.conf
+        regexp: '^\s*#?\s*{{ item.key }}='
+        line: '{{ item.key }}={{ item.value }}'
+      loop:
+        - key: DBHost
+          value: localhost
+        - key: DBName
+          value: zabbix
+        - key: DBUser
+          value: zabbix
+      notify: Restart Zabbix Server
+
+    - name: Configure Zabbix database password
+      ansible.builtin.lineinfile:
+        path: /etc/zabbix/zabbix_server.conf
+        regexp: '^\s*#?\s*DBPassword='
+        line: 'DBPassword={{ zabbix_db_password }}'
+      no_log: true
+      notify: Restart Zabbix Server
+
+    - name: Configure Zabbix frontend
+      ansible.builtin.copy:
+        dest: /etc/zabbix/web/zabbix.conf.php
+        owner: root
+        group: www-data
+        mode: '0640'
+        content: |
+          <?php
+          $DB['TYPE'] = 'POSTGRESQL';
+          $DB['SERVER'] = 'localhost';
+          $DB['PORT'] = '0';
+          $DB['DATABASE'] = 'zabbix';
+          $DB['USER'] = 'zabbix';
+          $DB['PASSWORD'] = '{{ zabbix_db_password }}';
+
+          $ZBX_SERVER = 'localhost';
+          $ZBX_SERVER_PORT = '10051';
+          $ZBX_SERVER_NAME = 'Zabbix';
+
+          $IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;
+      no_log: true
+      notify: Restart Nginx
+
+    - name: Configure Zabbix Nginx site
+      ansible.builtin.lineinfile:
+        path: /etc/zabbix/nginx.conf
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop:
+        - regexp: '^\s*#?\s*listen\s+.*;$'
+          line: '        listen 80;'
+        - regexp: '^\s*#?\s*server_name\s+.*;$'
+          line: '        server_name _;'
+      notify: Restart Nginx
+
+    - name: Disable default Nginx site
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: Restart Nginx
+
+    - name: Validate Zabbix server configuration
+      ansible.builtin.command:
+        argv:
+          - /usr/sbin/zabbix_server
+          - -T
+          - -c
+          - /etc/zabbix/zabbix_server.conf
+      changed_when: false
+
+    - name: Enable Zabbix Server
+      ansible.builtin.systemd_service:
+        name: zabbix-server
+        enabled: true
+        state: started
+
+    - name: Enable Nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        state: started
+
+  handlers:
+    - name: Restart Zabbix Server
+      ansible.builtin.systemd_service:
+        name: zabbix-server
+        state: restarted
+
+    - name: Restart PHP-FPM
+      ansible.builtin.systemd_service:
+        name: php8.4-fpm
+        state: restarted
+
+    - name: Restart Nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        state: restarted

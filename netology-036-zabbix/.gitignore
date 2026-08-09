@@ -1,0 +1,13 @@
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/tfplan
+terraform/tfplan.*
+terraform/tfdestroy
+terraform/tfdestroy.*
+terraform/crash.log
+
+ansible/.zabbix_db_password
+
+artifacts/
+docs/private/
