@@ -1,0 +1,125 @@
+---
+- name: Task 1 | Configure Python backends
+  hosts: app
+  become: true
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+    backend_ports:
+      - 8888
+      - 9999
+
+  tasks:
+    - name: Install Python
+      ansible.builtin.apt:
+        name:
+          - python3
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Create backend directories
+      ansible.builtin.file:
+        path: "/srv/netology/backend-{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      loop: "{{ backend_ports }}"
+
+    - name: Deploy backend pages
+      ansible.builtin.copy:
+        src: "{{ project_root }}/web/backend-{{ item }}/index.html"
+        dest: "/srv/netology/backend-{{ item }}/index.html"
+        owner: root
+        group: root
+        mode: "0644"
+      loop: "{{ backend_ports }}"
+
+    - name: Install systemd template unit
+      ansible.builtin.copy:
+        src: "{{ project_root }}/configs/systemd/netology-http@.service"
+        dest: /etc/systemd/system/netology-http@.service
+        owner: root
+        group: root
+        mode: "0644"
+      register: backend_unit
+
+    - name: Reload systemd after unit change
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: backend_unit.changed
+
+    - name: Enable and start backend services
+      ansible.builtin.systemd_service:
+        name: "netology-http@{{ item }}.service"
+        enabled: true
+        state: "{{ 'restarted' if backend_unit.changed else 'started' }}"
+      loop: "{{ backend_ports }}"
+
+    - name: Wait for backend ports
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: "{{ item }}"
+        timeout: 10
+      loop: "{{ backend_ports }}"
+
+
+- name: Task 1 | Configure HAProxy L4 load balancer
+  hosts: lb
+  become: true
+  gather_facts: true
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+    app_ip: "{{ hostvars[groups['app'][0]].ansible_host }}"
+
+  tasks:
+    - name: Gather service facts
+      ansible.builtin.service_facts:
+
+    - name: Stop Nginx when present
+      ansible.builtin.systemd_service:
+        name: nginx
+        state: stopped
+        enabled: false
+      when: "'nginx.service' in ansible_facts.services"
+
+    - name: Install HAProxy
+      ansible.builtin.apt:
+        name: haproxy
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Deploy Task 1 HAProxy configuration
+      ansible.builtin.template:
+        src: "{{ project_root }}/configs/haproxy/01-task1.cfg.j2"
+        dest: /etc/haproxy/haproxy.cfg
+        owner: root
+        group: root
+        mode: "0644"
+        validate: /usr/sbin/haproxy -c -f %s
+      notify: Reload HAProxy
+
+    - name: Enable and start HAProxy
+      ansible.builtin.systemd_service:
+        name: haproxy
+        enabled: true
+        state: started
+
+    - name: Apply pending HAProxy configuration
+      ansible.builtin.meta: flush_handlers
+
+    - name: Wait for HAProxy listener
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 1325
+        timeout: 10
+
+  handlers:
+    - name: Reload HAProxy
+      ansible.builtin.systemd_service:
+        name: haproxy
+        state: reloaded

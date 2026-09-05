@@ -1,0 +1,16 @@
+[Unit]
+Description=Netology HTTP backend on port %i
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecStart=/usr/bin/python3 -m http.server %i --bind 0.0.0.0 --directory /srv/netology/backend-%i
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

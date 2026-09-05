@@ -1,0 +1,14 @@
+provider "proxmox" {
+  endpoint = var.proxmox_endpoint
+  insecure = true
+
+  ssh {
+    username = "terraform"
+    agent    = true
+
+    node {
+      name    = var.proxmox_node
+      address = var.proxmox_ssh_address
+    }
+  }
+}

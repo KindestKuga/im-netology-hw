@@ -1,0 +1,170 @@
+---
+- name: Task 3 | Configure Python backends
+  hosts: app
+  become: true
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+    backend_ports:
+      - 8888
+      - 9999
+
+  tasks:
+    - name: Install Python
+      ansible.builtin.apt:
+        name: python3
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Create backend directories
+      ansible.builtin.file:
+        path: "/srv/netology/backend-{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      loop: "{{ backend_ports }}"
+
+    - name: Deploy backend pages
+      ansible.builtin.copy:
+        src: "{{ project_root }}/web/backend-{{ item }}/index.html"
+        dest: "/srv/netology/backend-{{ item }}/index.html"
+        owner: root
+        group: root
+        mode: "0644"
+      loop: "{{ backend_ports }}"
+
+    - name: Install systemd template unit
+      ansible.builtin.copy:
+        src: "{{ project_root }}/configs/systemd/netology-http@.service"
+        dest: /etc/systemd/system/netology-http@.service
+        owner: root
+        group: root
+        mode: "0644"
+      register: backend_unit
+
+    - name: Reload systemd after unit change
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: backend_unit.changed
+
+    - name: Enable and start backend services
+      ansible.builtin.systemd_service:
+        name: "netology-http@{{ item }}.service"
+        enabled: true
+        state: "{{ 'restarted' if backend_unit.changed else 'started' }}"
+      loop: "{{ backend_ports }}"
+
+    - name: Wait for backend ports
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: "{{ item }}"
+        timeout: 10
+      loop: "{{ backend_ports }}"
+
+
+- name: Task 3 | Configure Nginx and HAProxy
+  hosts: lb
+  become: true
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+    app_ip: "{{ hostvars[groups['app'][0]].ansible_host }}"
+
+  tasks:
+    - name: Install Nginx and HAProxy
+      ansible.builtin.apt:
+        name:
+          - nginx
+          - haproxy
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Remove default Nginx site
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Deploy Nginx JPEG images
+      ansible.builtin.copy:
+        src: "{{ project_root }}/web/nginx-static/{{ item }}"
+        dest: "/var/www/{{ item }}"
+        owner: root
+        group: root
+        mode: "0644"
+      loop:
+        - nginx-black.jpg
+        - nginx-white.jpg
+
+    - name: Deploy Task 3 HAProxy configuration
+      ansible.builtin.template:
+        src: "{{ project_root }}/configs/haproxy/03-task3.cfg.j2"
+        dest: /etc/haproxy/haproxy.cfg
+        owner: root
+        group: root
+        mode: "0644"
+        validate: /usr/sbin/haproxy -c -f %s
+      notify: Reload HAProxy
+
+    - name: Deploy Task 3 Nginx configuration
+      ansible.builtin.template:
+        src: "{{ project_root }}/configs/nginx/03-task3.conf.j2"
+        dest: /etc/nginx/conf.d/netology-task3.conf
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload Nginx
+
+    - name: Validate Nginx configuration
+      ansible.builtin.command:
+        cmd: /usr/sbin/nginx -t
+      changed_when: false
+      when: not ansible_check_mode
+
+    - name: Enable and start HAProxy
+      ansible.builtin.systemd_service:
+        name: haproxy
+        enabled: true
+        state: started
+      when: not ansible_check_mode
+
+    - name: Enable and start Nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        state: started
+      when: not ansible_check_mode
+
+    - name: Apply pending configuration
+      ansible.builtin.meta: flush_handlers
+
+    - name: Wait for internal HAProxy listener
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 8090
+        timeout: 10
+      when: not ansible_check_mode
+
+    - name: Wait for Nginx listener
+      ansible.builtin.wait_for:
+        host: 127.0.0.1
+        port: 8080
+        timeout: 10
+      when: not ansible_check_mode
+
+  handlers:
+    - name: Reload HAProxy
+      ansible.builtin.systemd_service:
+        name: haproxy
+        state: reloaded
+      when: not ansible_check_mode
+
+    - name: Reload Nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        state: reloaded
+      when: not ansible_check_mode

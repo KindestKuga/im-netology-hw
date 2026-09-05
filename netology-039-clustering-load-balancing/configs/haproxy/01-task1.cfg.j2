@@ -1,0 +1,25 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode tcp
+    option tcplog
+
+    timeout connect 5s
+    timeout client  30s
+    timeout server  30s
+
+listen task1_l4
+    bind :1325
+    mode tcp
+
+    balance roundrobin
+    option tcp-check
+
+    server backend_8888 {{ app_ip }}:8888 check inter 2s fall 3 rise 2
+    server backend_9999 {{ app_ip }}:9999 check inter 2s fall 3 rise 2

@@ -1,0 +1,15 @@
+.terraform/
+.terraform.d/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.auto.tfvars
+*.tfplan
+tfplan
+tfdestroy
+crash.log
+crash.*.log
+.terraformrc
+
+# Generated from Terraform outputs
+ansible/inventory.yml

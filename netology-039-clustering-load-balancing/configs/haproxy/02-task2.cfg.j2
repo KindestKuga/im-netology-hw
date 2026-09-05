@@ -1,0 +1,33 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+
+    timeout connect 5s
+    timeout client  30s
+    timeout server  30s
+
+frontend task2_http
+    bind :8088
+    mode http
+
+    acl host_example hdr(host) -i example.local example.local:8088
+    use_backend task2_backends if host_example
+
+backend task2_backends
+    mode http
+    balance roundrobin
+
+    option httpchk
+    http-check send meth GET uri /index.html
+
+    server backend_8888 {{ app_ip }}:8888 weight 2 check
+    server backend_9999 {{ app_ip }}:9999 weight 3 check
+    server backend_7777 {{ app_ip }}:7777 weight 4 check

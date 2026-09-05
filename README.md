@@ -6,11 +6,13 @@
 
 ## Работы
 
-| Работа | Тема | Что внутри |
+| Работа | Тема | Что реализовано |
 |---|---|---|
-| [netology-032-yandex-cloud](netology-032-yandex-cloud/README.md) | Terraform, Yandex Cloud, Ansible | инфраструктура, inventory, настройка nginx, проверка результата |
-| [netology-033-gitlab](netology-033-gitlab/README.md) | GitLab CI, GitLab Runner, Docker | runner, pipeline, Go tests, сборка бинарника, Docker build, скриншоты |
-| [netology-036-zabbix](netology-036-zabbix/README.md)               | Zabbix, Terraform, Ansible        | Zabbix Server и Agent 2, шаблоны, UserParameter, dashboard, discovery, скриншоты |
+| [netology-032-yandex-cloud](netology-032-yandex-cloud/README.md) | Terraform, Yandex Cloud, Ansible | облачная инфраструктура с public/private subnet, NAT Gateway, bastion/ProxyJump, отдельными web- и PostgreSQL-узлами и автоматической настройкой через Ansible |
+| [netology-033-gitlab](netology-033-gitlab/README.md) | GitLab CI, GitLab Runner, Docker | локальный GitLab Runner с Docker executor и CI pipeline для Go: тестирование, сборка бинарника и Docker image |
+| [netology-036-zabbix](netology-036-zabbix/README.md) | Zabbix, Terraform, Ansible | автоматизированное развёртывание Zabbix Server и Agent 2, пользовательские метрики через UserParameter, discovery и dashboard |
+| [netology-039-clustering-load-balancing](netology-039-clustering-load-balancing/README.md) | HAProxy, Nginx, балансировка нагрузки | L4/L7-балансировка через HAProxy, Round Robin и Weighted Round Robin, маршрутизация по Host и связка Nginx → HAProxy → backend-серверы |
+| [netology-041-cloud-fault-tolerance](netology-041-cloud-fault-tolerance/README.md) | Yandex Cloud, отказоустойчивость, Network Load Balancer | отказоустойчивый HTTP-сервис за Yandex Network Load Balancer: две VM, Target Group и вариант с Compute Instance Group и автоматическим развёртыванием Nginx |
 
 ## Как читать
 

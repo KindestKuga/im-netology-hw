@@ -1,0 +1,51 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+
+    timeout connect 5s
+    timeout client  30s
+    timeout server  30s
+
+frontend task4_http
+    bind :8088
+    mode http
+
+    acl host_example1 hdr(host) -i example1.local example1.local:8088
+    acl host_example2 hdr(host) -i example2.local example2.local:8088
+
+    use_backend example1_pool if host_example1
+    use_backend example2_pool if host_example2
+
+backend example1_pool
+    mode http
+    balance roundrobin
+
+    option httpchk
+    http-check send meth GET uri /index.html
+
+    http-response set-header X-Backend-Pool example1_pool
+    http-response set-header X-Backend-Server %[srv_name]
+
+    server example1_8101 {{ app_ip }}:8101 check
+    server example1_8102 {{ app_ip }}:8102 check
+
+backend example2_pool
+    mode http
+    balance roundrobin
+
+    option httpchk
+    http-check send meth GET uri /index.html
+
+    http-response set-header X-Backend-Pool example2_pool
+    http-response set-header X-Backend-Server %[srv_name]
+
+    server example2_8201 {{ app_ip }}:8201 check
+    server example2_8202 {{ app_ip }}:8202 check

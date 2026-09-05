@@ -1,0 +1,18 @@
+proxmox_endpoint    = "https://<proxmox-host>:8006/"
+proxmox_ssh_address = "<proxmox-host>"
+proxmox_node        = "<proxmox-node>"
+
+file_datastore = "local"
+vm_datastore   = "<vm-datastore>"
+
+bridge     = "vmbr0"
+gateway    = "<gateway-ip>"
+dns_server = "<dns-server-ip>"
+
+debian_image_id = "local:import/<debian-cloud-image>.qcow2"
+
+lb_vm_id  = 100
+app_vm_id = 101
+
+lb_ip  = "<lb-ip>/24"
+app_ip = "<app-ip>/24"

@@ -1,0 +1,30 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+
+    timeout connect 5s
+    timeout client  30s
+    timeout server  30s
+
+frontend task3_from_nginx
+    bind 127.0.0.1:8090
+    default_backend task3_backends
+
+backend task3_backends
+    balance roundrobin
+
+    option httpchk
+    http-check send meth GET uri /index.html
+
+    http-response set-header X-Served-By haproxy-backend
+
+    server backend_8888 {{ app_ip }}:8888 check
+    server backend_9999 {{ app_ip }}:9999 check
