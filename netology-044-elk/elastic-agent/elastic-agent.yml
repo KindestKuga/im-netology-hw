@@ -1,0 +1,58 @@
+outputs:
+  default:
+    type: elasticsearch
+    hosts: ["http://elasticsearch:9200"]
+    preset: latency
+
+inputs:
+  - type: filestream
+    id: agent-demo-logs
+    data_stream.namespace: netology44
+    use_output: default
+    streams:
+      - id: agent-demo-application
+        data_stream:
+          dataset: agentdemo.application
+        paths:
+          - /var/log/agent-demo/application.jsonl
+        parsers:
+          - ndjson:
+              target: ""
+              overwrite_keys: true
+              add_error_key: true
+        processors:
+          - add_fields:
+              target: labels
+              fields:
+                lab: netology44
+                ingest_path: elastic-agent
+
+  - type: prometheus/metrics
+    id: agent-demo-prometheus
+    data_stream.namespace: netology44
+    use_output: default
+    streams:
+      - id: agent-demo-prometheus-collector
+        data_stream:
+          dataset: agentdemo.prometheus
+        metricsets: ["collector"]
+        hosts: ["agent-demo:9100"]
+        metrics_path: /metrics
+        period: 5s
+        use_types: true
+        rate_counters: false
+        processors:
+          - add_fields:
+              target: labels
+              fields:
+                lab: netology44
+                ingest_path: elastic-agent
+
+agent.monitoring:
+  enabled: false
+
+management:
+  mode: local
+
+agent.logging.level: info
+agent.logging.to_stderr: true

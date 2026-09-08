@@ -1,0 +1,24 @@
+---
+rabbitmq_vhost: /netology
+
+rabbitmq_admin_user: netology_admin
+rabbitmq_app_user: netology_app
+
+rabbitmq_ssh_port: 22
+
+rabbitmq_amqp_tls_port: 5671
+rabbitmq_management_tls_port: 15671
+
+rabbitmq_epmd_port: 4369
+rabbitmq_distribution_port: 25672
+
+rabbitmq_prometheus_port: 15692
+rabbitmq_prometheus_bind_address: "127.0.0.1"
+
+# Inventory-driven cluster setting shared by installation and
+# cluster-wide configuration tasks.
+rabbitmq_quorum_replica_target: "{{ [3, groups['rabbitmq'] | length] | min }}"
+
+rabbitmq_erlang_cookie: "{{ vault_rabbitmq_erlang_cookie }}"
+rabbitmq_admin_password: "{{ vault_rabbitmq_admin_password }}"
+rabbitmq_app_password: "{{ vault_rabbitmq_app_password }}"

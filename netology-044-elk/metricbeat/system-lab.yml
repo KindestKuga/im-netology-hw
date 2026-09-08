@@ -1,0 +1,39 @@
+metricbeat.modules:
+  - module: prometheus
+    metricsets: ["collector"]
+    period: 2s
+    hosts: ["system-lab:9100"]
+    metrics_path: /metrics
+    use_types: true
+    rate_counters: false
+    index: metrics-system.container-netology44
+    processors:
+      - add_fields:
+          target: data_stream
+          fields:
+            type: metrics
+            dataset: system.container
+            namespace: netology44
+      - add_fields:
+          target: event
+          fields:
+            dataset: system.container
+      - add_fields:
+          target: labels
+          fields:
+            lab: netology44
+            ingest_path: metricbeat
+            synthetic: true
+      - add_fields:
+          target: service
+          fields:
+            name: system-lab
+
+setup.template.enabled: false
+setup.ilm.enabled: false
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  preset: latency
+
+logging.level: info

@@ -1,0 +1,56 @@
+---
+- name: Validate firewall configuration variables
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_admin_cidr is defined
+      - rabbitmq_admin_cidr | length > 0
+      - rabbitmq_client_cidr is defined
+      - rabbitmq_client_cidr | length > 0
+    fail_msg: >-
+      rabbitmq_admin_cidr and rabbitmq_client_cidr must be defined
+      in group_vars/all/local.yml.
+
+- name: Install nftables
+  ansible.builtin.apt:
+    name: nftables
+    state: present
+    update_cache: false
+
+- name: Install validated nftables ruleset
+  ansible.builtin.template:
+    src: nftables.conf.j2
+    dest: /etc/nftables.conf
+    owner: root
+    group: root
+    mode: "0644"
+    validate: "nft -c -f %s"
+  notify: Apply nftables ruleset
+
+- name: Enable and start nftables
+  ansible.builtin.systemd:
+    name: nftables
+    enabled: true
+    state: started
+
+- name: Apply pending nftables changes
+  ansible.builtin.meta: flush_handlers
+
+- name: Verify nftables service
+  ansible.builtin.command:
+    cmd: systemctl is-active nftables
+  register: rabbitmq_nftables_service
+  changed_when: false
+  failed_when: rabbitmq_nftables_service.stdout != "active"
+
+- name: Read active nftables ruleset
+  ansible.builtin.command:
+    cmd: nft list ruleset
+  register: rabbitmq_nftables_ruleset
+  changed_when: false
+
+- name: Validate RabbitMQ firewall table
+  ansible.builtin.assert:
+    that:
+      - "'table inet netology_rabbitmq' in rabbitmq_nftables_ruleset.stdout"
+      - "'policy drop' in rabbitmq_nftables_ruleset.stdout"
+    fail_msg: "Expected RabbitMQ nftables policy is not active."

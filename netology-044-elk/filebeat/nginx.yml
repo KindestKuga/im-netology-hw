@@ -1,0 +1,53 @@
+filebeat.inputs:
+  - type: filestream
+    id: nginx-access
+    paths:
+      - /var/log/nginx/netology-access.log
+    index: logs-nginx.access-netology44
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+          add_error_key: true
+    fields_under_root: true
+    fields:
+      data_stream:
+        type: logs
+        dataset: nginx.access
+        namespace: netology44
+      event:
+        dataset: nginx.access
+      labels:
+        lab: netology44
+        ingest_path: filebeat-direct
+      service:
+        name: nginx
+
+  - type: filestream
+    id: nginx-error
+    paths:
+      - /var/log/nginx/netology-error.log
+    index: logs-nginx.error-netology44
+    pipeline: netology44-nginx-error
+    fields_under_root: true
+    fields:
+      data_stream:
+        type: logs
+        dataset: nginx.error
+        namespace: netology44
+      event:
+        dataset: nginx.error
+      labels:
+        lab: netology44
+        ingest_path: filebeat-direct
+      service:
+        name: nginx
+
+setup.template.enabled: false
+setup.ilm.enabled: false
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  preset: latency
+
+logging.level: info

@@ -1,0 +1,219 @@
+---
+- name: Validate RabbitMQ inventory
+  ansible.builtin.assert:
+    that:
+      - groups['rabbitmq'] | length >= 1
+    fail_msg: "The rabbitmq inventory group must contain at least one node."
+
+- name: Validate quorum replica target
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_quorum_replica_target | int >= 1
+      - rabbitmq_quorum_replica_target | int <= groups['rabbitmq'] | length
+    fail_msg: >-
+      rabbitmq_quorum_replica_target must be between 1 and the number
+      of RabbitMQ inventory nodes.
+
+- name: Warn when quorum HA is not possible
+  ansible.builtin.debug:
+    msg: >-
+      This RabbitMQ cluster has fewer than three nodes.
+      It can run, but quorum queues cannot tolerate a node failure.
+  when: groups['rabbitmq'] | length < 3
+
+- name: Warn about an even quorum replica target
+  ansible.builtin.debug:
+    msg: >-
+      An odd quorum replica count is preferred because an even-sized
+      Raft group does not increase failure tolerance.
+  when:
+    - rabbitmq_quorum_replica_target | int > 1
+    - rabbitmq_quorum_replica_target | int % 2 == 0
+
+- name: Validate Debian release
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] == "Debian"
+      - ansible_facts["distribution_major_version"] == "13"
+    fail_msg: "This role is prepared for Debian 13 Trixie."
+
+- name: Check local RabbitMQ PKI artifacts
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - "{{ playbook_dir }}/../pki/ca.crt.pem"
+    - "{{ playbook_dir }}/../pki/{{ inventory_hostname }}.crt.pem"
+    - "{{ playbook_dir }}/../pki/{{ inventory_hostname }}.key.pem"
+  delegate_to: localhost
+  become: false
+  register: rabbitmq_pki_files
+
+- name: Require all RabbitMQ PKI artifacts
+  ansible.builtin.assert:
+    that:
+      - item.stat.exists
+      - item.stat.isreg
+    fail_msg: "Required PKI file does not exist: {{ item.item }}"
+  loop: "{{ rabbitmq_pki_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+
+- name: Install repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Download RabbitMQ signing key
+  ansible.builtin.get_url:
+    url: "https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA"
+    dest: /tmp/rabbitmq-signing-key.asc
+    mode: "0644"
+
+- name: Install RabbitMQ signing key
+  ansible.builtin.command:
+    cmd: >-
+      gpg --batch --yes --dearmor
+      --output /usr/share/keyrings/com.rabbitmq.team.gpg
+      /tmp/rabbitmq-signing-key.asc
+    creates: /usr/share/keyrings/com.rabbitmq.team.gpg
+
+- name: Configure RabbitMQ repository
+  ansible.builtin.template:
+    src: rabbitmq.list.j2
+    dest: /etc/apt/sources.list.d/rabbitmq.list
+    owner: root
+    group: root
+    mode: "0644"
+  register: rabbitmq_repository
+
+- name: Pin RabbitMQ version
+  ansible.builtin.template:
+    src: rabbitmq.pref.j2
+    dest: /etc/apt/preferences.d/rabbitmq
+    owner: root
+    group: root
+    mode: "0644"
+  register: rabbitmq_pin
+
+- name: Update apt metadata after repository changes
+  ansible.builtin.apt:
+    update_cache: true
+  when: rabbitmq_repository.changed or rabbitmq_pin.changed
+
+- name: Install RabbitMQ without starting it prematurely
+  ansible.builtin.apt:
+    name:
+      - "rabbitmq-server={{ rabbitmq_package_version }}"
+    state: present
+    allow_downgrade: true
+    policy_rc_d: 101
+  notify: Restart RabbitMQ
+
+- name: Configure RabbitMQ node name resolution
+  ansible.builtin.blockinfile:
+    path: /etc/hosts
+    marker: "# {mark} NETOLOGY RABBITMQ CLUSTER"
+    block: |
+      {% for host in groups['rabbitmq'] %}
+      {{ hostvars[host].ansible_host }} {{ host }}
+      {% endfor %}
+  notify: Restart RabbitMQ
+
+- name: Verify peer hostname resolution
+  ansible.builtin.command:
+    cmd: "getent hosts {{ item }}"
+  loop: "{{ groups['rabbitmq'] }}"
+  changed_when: false
+
+- name: Install shared Erlang cookie
+  ansible.builtin.copy:
+    content: "{{ rabbitmq_erlang_cookie }}\n"
+    dest: /var/lib/rabbitmq/.erlang.cookie
+    owner: rabbitmq
+    group: rabbitmq
+    mode: "0400"
+  no_log: true
+  notify: Restart RabbitMQ
+
+- name: Create RabbitMQ TLS directory
+  ansible.builtin.file:
+    path: "{{ rabbitmq_tls_dir }}"
+    state: directory
+    owner: root
+    group: rabbitmq
+    mode: "0750"
+
+- name: Install RabbitMQ CA certificate
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../pki/ca.crt.pem"
+    dest: "{{ rabbitmq_tls_dir }}/ca.crt.pem"
+    owner: root
+    group: rabbitmq
+    mode: "0644"
+  notify: Restart RabbitMQ
+
+- name: Install RabbitMQ server certificate
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../pki/{{ inventory_hostname }}.crt.pem"
+    dest: "{{ rabbitmq_tls_dir }}/server.crt.pem"
+    owner: root
+    group: rabbitmq
+    mode: "0644"
+  notify: Restart RabbitMQ
+
+- name: Install RabbitMQ server private key
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../pki/{{ inventory_hostname }}.key.pem"
+    dest: "{{ rabbitmq_tls_dir }}/server.key.pem"
+    owner: rabbitmq
+    group: rabbitmq
+    mode: "0400"
+  no_log: true
+  notify: Restart RabbitMQ
+
+- name: Configure RabbitMQ
+  ansible.builtin.template:
+    src: rabbitmq.conf.j2
+    dest: /etc/rabbitmq/rabbitmq.conf
+    owner: rabbitmq
+    group: rabbitmq
+    mode: "0644"
+  notify: Restart RabbitMQ
+
+- name: Enable management and Prometheus plugins offline
+  community.rabbitmq.rabbitmq_plugin:
+    names: rabbitmq_management,rabbitmq_prometheus
+    state: enabled
+    new_only: true
+    broker_state: offline
+  notify: Restart RabbitMQ
+
+- name: Apply pending RabbitMQ changes
+  ansible.builtin.meta: flush_handlers
+
+- name: Ensure RabbitMQ is enabled and running
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: true
+
+- name: Wait for TLS AMQP listener
+  ansible.builtin.wait_for:
+    port: "{{ rabbitmq_amqp_tls_port }}"
+    host: 127.0.0.1
+    timeout: 90
+
+- name: Wait until RabbitMQ responds to diagnostics
+  ansible.builtin.command:
+    cmd: rabbitmq-diagnostics -q ping
+  register: rabbitmq_ping
+  changed_when: false
+  retries: 20
+  delay: 3
+  until: rabbitmq_ping.rc == 0

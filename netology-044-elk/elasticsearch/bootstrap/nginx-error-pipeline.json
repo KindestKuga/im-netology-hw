@@ -1,0 +1,50 @@
+{
+  "description": "Parse native Nginx error.log lines for Netology homework 44",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "(?<nginx.timestamp>%{YEAR}/%{MONTHNUM}/%{MONTHDAY} %{TIME}) \\[%{LOGLEVEL:nginx.log_level}\\] %{NUMBER:nginx.pid:long}#%{NUMBER:nginx.thread_id:long}: (?:\\*%{NUMBER:nginx.connection_id:long} )?%{GREEDYDATA:nginx.error_message}"
+        ],
+        "ignore_failure": true
+      }
+    },
+    {
+      "date": {
+        "field": "nginx.timestamp",
+        "formats": [
+          "yyyy/MM/dd HH:mm:ss"
+        ],
+        "ignore_failure": true
+      }
+    },
+    {
+      "rename": {
+        "field": "nginx.log_level",
+        "target_field": "log.level",
+        "ignore_missing": true
+      }
+    },
+    {
+      "rename": {
+        "field": "nginx.pid",
+        "target_field": "process.pid",
+        "ignore_missing": true
+      }
+    },
+    {
+      "rename": {
+        "field": "nginx.error_message",
+        "target_field": "error.message",
+        "ignore_missing": true
+      }
+    },
+    {
+      "remove": {
+        "field": "nginx.timestamp",
+        "ignore_missing": true
+      }
+    }
+  ]
+}

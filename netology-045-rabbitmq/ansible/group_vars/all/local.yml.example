@@ -1,0 +1,6 @@
+---
+# Network allowed to administer the RabbitMQ nodes over SSH and HTTPS.
+rabbitmq_admin_cidr: "192.0.2.0/24"
+
+# Network allowed to connect to RabbitMQ over AMQPS.
+rabbitmq_client_cidr: "192.0.2.0/24"

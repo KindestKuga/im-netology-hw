@@ -1,0 +1,38 @@
+#cloud-config
+hostname: ${hostname}
+preserve_hostname: false
+manage_etc_hosts: true
+
+timezone: Etc/UTC
+
+ssh_pwauth: false
+disable_root: true
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - ca-certificates
+  - curl
+  - openssh-server
+  - python3
+  - qemu-guest-agent
+  - sudo
+
+users:
+  - name: debian
+    gecos: Netology Lab Administrator
+    groups:
+      - sudo
+    shell: /bin/bash
+    lock_passwd: true
+    sudo:
+      - ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+runcmd:
+  - [ systemctl, enable, --now, qemu-guest-agent.service ]
+  - [ systemctl, enable, --now, ssh.service ]
+
+final_message: "${hostname} cloud-init finished after $UPTIME seconds"

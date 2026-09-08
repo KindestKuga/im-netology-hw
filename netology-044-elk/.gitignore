@@ -1,0 +1,6 @@
+artifacts/
+docs/private/
+__pycache__/
+*.py[cod]
+*.log
+.env

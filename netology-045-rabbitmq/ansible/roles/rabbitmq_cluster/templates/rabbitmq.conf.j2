@@ -1,0 +1,40 @@
+# Plain AMQP is intentionally disabled.
+listeners.tcp = none
+
+listeners.ssl.default = {{ rabbitmq_amqp_tls_port }}
+
+ssl_options.cacertfile = {{ rabbitmq_tls_dir }}/ca.crt.pem
+ssl_options.certfile = {{ rabbitmq_tls_dir }}/server.crt.pem
+ssl_options.keyfile = {{ rabbitmq_tls_dir }}/server.key.pem
+ssl_options.verify = verify_peer
+ssl_options.fail_if_no_peer_cert = false
+ssl_options.versions.1 = tlsv1.3
+ssl_options.versions.2 = tlsv1.2
+
+# Management UI/API is exposed only through HTTPS.
+management.ssl.ip = 0.0.0.0
+management.ssl.port = {{ rabbitmq_management_tls_port }}
+management.ssl.cacertfile = {{ rabbitmq_tls_dir }}/ca.crt.pem
+management.ssl.certfile = {{ rabbitmq_tls_dir }}/server.crt.pem
+management.ssl.keyfile = {{ rabbitmq_tls_dir }}/server.key.pem
+management.ssl.verify = verify_none
+management.ssl.fail_if_no_peer_cert = false
+management.ssl.versions.1 = tlsv1.3
+management.ssl.versions.2 = tlsv1.2
+
+# Metrics remain local until a monitoring network is explicitly configured.
+prometheus.tcp.ip = {{ rabbitmq_prometheus_bind_address }}
+prometheus.tcp.port = {{ rabbitmq_prometheus_port }}
+
+quorum_queue.initial_cluster_size = {{ rabbitmq_quorum_replica_target | int }}
+quorum_queue.wal_max_size_bytes = {{ rabbitmq_quorum_wal_max_size_bytes }}
+
+quorum_queue.continuous_membership_reconciliation.enabled = true
+
+{% set peers = groups['rabbitmq'] | reject('equalto', inventory_hostname) | list %}
+{% if peers | length > 0 %}
+cluster_formation.peer_discovery_backend = classic_config
+{% for peer in peers %}
+cluster_formation.classic_config.nodes.{{ loop.index }} = rabbit@{{ peer }}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,7 @@
+---
+rabbitmq_package_version: "4.3.5-1"
+
+rabbitmq_tls_dir: /etc/rabbitmq/tls
+
+# Intentionally reduced for the resource-constrained 1 GiB lab VMs.
+rabbitmq_quorum_wal_max_size_bytes: 64000000

@@ -1,0 +1,2 @@
+pipeline.ecs_compatibility: v8
+log.level: info

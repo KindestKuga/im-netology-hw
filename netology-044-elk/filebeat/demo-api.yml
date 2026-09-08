@@ -1,0 +1,13 @@
+filebeat.inputs:
+  - type: filestream
+    id: demo-api-file
+    paths:
+      - /var/log/demo-api/application.jsonl
+    fields_under_root: true
+    fields:
+      lab_dataset: demoapi.application
+
+output.logstash:
+  hosts: ["logstash-demo:5044"]
+
+logging.level: info

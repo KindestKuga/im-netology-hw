@@ -1,0 +1,25 @@
+{
+  "index_patterns": ["metrics-*-netology44"],
+  "priority": 500,
+  "data_stream": {},
+  "template": {
+    "settings": {
+      "index.number_of_replicas": 0
+    },
+    "mappings": {
+      "dynamic": true,
+      "properties": {
+        "@timestamp": {"type": "date"},
+        "event": {
+          "properties": {
+            "dataset": {"type": "keyword"}
+          }
+        },
+        "labels": {"type": "object", "dynamic": true}
+      }
+    }
+  },
+  "_meta": {
+    "description": "Netology homework 44 synthetic metric data streams"
+  }
+}

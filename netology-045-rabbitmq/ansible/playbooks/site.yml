@@ -1,0 +1,97 @@
+---
+- name: Install and form RabbitMQ cluster
+  hosts: rabbitmq
+  become: true
+  gather_facts: true
+  serial: 1
+
+  roles:
+    - rabbitmq_cluster
+
+- name: Configure RabbitMQ security and cluster-wide objects
+  hosts: rabbitmq
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Create Netology virtual host
+      community.rabbitmq.rabbitmq_vhost:
+        name: "{{ rabbitmq_vhost }}"
+        state: present
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+
+    - name: Create Netology administrator
+      community.rabbitmq.rabbitmq_user:
+        user: "{{ rabbitmq_admin_user }}"
+        password: "{{ rabbitmq_admin_password }}"
+        update_password: always
+        tags: administrator
+        permissions:
+          - vhost: "{{ rabbitmq_vhost }}"
+            configure_priv: ".*"
+            write_priv: ".*"
+            read_priv: ".*"
+        state: present
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+      no_log: true
+
+    - name: Create Netology application user
+      community.rabbitmq.rabbitmq_user:
+        user: "{{ rabbitmq_app_user }}"
+        password: "{{ rabbitmq_app_password }}"
+        update_password: always
+        tags: ""
+        permissions:
+          - vhost: "{{ rabbitmq_vhost }}"
+            configure_priv: '^hello$'
+            write_priv: '^amq\.default$'
+            read_priv: '^hello$'
+        state: present
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+      no_log: true
+
+    - name: Configure modern quorum HA policy
+      community.rabbitmq.rabbitmq_policy:
+        name: quorum-ha
+        pattern: ".*"
+        apply_to: quorum_queues
+        vhost: "{{ rabbitmq_vhost }}"
+        tags:
+          target-group-size: "{{ rabbitmq_quorum_replica_target | int }}"
+        state: present
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+
+    - name: Remove legacy quorum policy from default vhost
+      community.rabbitmq.rabbitmq_policy:
+        name: quorum-ha
+        vhost: /
+        state: absent
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+
+    - name: Remove legacy Netology administrator
+      community.rabbitmq.rabbitmq_user:
+        user: netology
+        state: absent
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+
+    - name: Remove default guest user
+      community.rabbitmq.rabbitmq_user:
+        user: guest
+        state: absent
+        node: "{{ rabbitmq_nodename }}"
+      run_once: true
+
+- name: Configure RabbitMQ host firewall
+  hosts: rabbitmq
+  become: true
+  gather_facts: false
+  serial: 1
+
+  roles:
+    - rabbitmq_firewall

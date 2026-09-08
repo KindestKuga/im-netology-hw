@@ -1,0 +1,216 @@
+name: netology-044-elk
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:-9.5.3}
+    environment:
+      discovery.type: single-node
+      cluster.name: ${ELASTIC_CLUSTER_NAME:-netology44-elk-a7f31c}
+      xpack.security.enabled: "false"
+      xpack.security.enrollment.enabled: "false"
+      ES_JAVA_OPTS: -Xms1g -Xmx1g
+    ports:
+      - "127.0.0.1:9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 20s
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION:-9.5.3}
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      XPACK_SECURITY_ENABLED: "false"
+      TELEMETRY_ENABLED: "false"
+      NODE_OPTIONS: --max-old-space-size=1024
+    ports:
+      - "127.0.0.1:5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  demo-api:
+    build:
+      context: ./demo-api
+    environment:
+      PORT: "8080"
+      LOG_PATH: /var/log/demo-api/application.jsonl
+    volumes:
+      - demo-api-logs:/var/log/demo-api
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  nginx:
+    image: nginx:1.28-alpine
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      demo-api:
+        condition: service_healthy
+
+  logstash-nginx:
+    image: docker.elastic.co/logstash/logstash:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["task3"]
+    environment:
+      LS_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline/nginx.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - nginx-logs:/var/log/nginx:ro
+      - logstash-nginx-data:/usr/share/logstash/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+
+  filebeat-nginx:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["task4"]
+    user: root
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./filebeat/nginx.yml:/usr/share/filebeat/filebeat.yml:ro
+      - nginx-logs:/var/log/nginx:ro
+      - filebeat-nginx-data:/usr/share/filebeat/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+
+  logstash-demo:
+    image: docker.elastic.co/logstash/logstash:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["task5"]
+    environment:
+      LS_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline/demo-api.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - logstash-demo-data:/usr/share/logstash/data
+    expose:
+      - "5044"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  filebeat-demo:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["task5"]
+    user: root
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./filebeat/demo-api.yml:/usr/share/filebeat/filebeat.yml:ro
+      - demo-api-logs:/var/log/demo-api:ro
+      - filebeat-demo-data:/usr/share/filebeat/data
+    depends_on:
+      logstash-demo:
+        condition: service_started
+      demo-api:
+        condition: service_healthy
+
+  system-lab:
+    build:
+      context: ./system-lab
+    profiles: ["journal", "metrics"]
+    environment:
+      PORT: "9100"
+    ports:
+      - "127.0.0.1:9101:9100"
+    volumes:
+      - system-journal:/var/log/journal
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:9100/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    cpus: "2.0"
+    mem_limit: 768m
+    stop_grace_period: 10s
+
+  filebeat-journal:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["journal"]
+    user: root
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./filebeat/journal.yml:/usr/share/filebeat/filebeat.yml:ro
+      - system-journal:/var/log/journal:ro
+      - filebeat-journal-data:/usr/share/filebeat/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      system-lab:
+        condition: service_healthy
+
+  metricbeat-system:
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["metrics"]
+    user: root
+    command: ["metricbeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./metricbeat/system-lab.yml:/usr/share/metricbeat/metricbeat.yml:ro
+      - metricbeat-data:/usr/share/metricbeat/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      system-lab:
+        condition: service_healthy
+
+  agent-demo:
+    build:
+      context: ./agent-demo
+    profiles: ["agent"]
+    environment:
+      PORT: "9100"
+      LOG_PATH: /var/log/agent-demo/application.jsonl
+    ports:
+      - "127.0.0.1:9102:9100"
+    volumes:
+      - agent-demo-logs:/var/log/agent-demo
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:9100/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  elastic-agent:
+    image: docker.elastic.co/elastic-agent/elastic-agent:${ELASTIC_VERSION:-9.5.3}
+    profiles: ["agent"]
+    user: root
+    command: ["elastic-agent", "run", "-e", "-c", "/usr/share/elastic-agent/elastic-agent.yml"]
+    volumes:
+      - ./elastic-agent/elastic-agent.yml:/usr/share/elastic-agent/elastic-agent.yml:ro
+      - agent-demo-logs:/var/log/agent-demo:ro
+      - elastic-agent-state:/usr/share/elastic-agent/state
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      agent-demo:
+        condition: service_healthy
+
+volumes:
+  es-data:
+  nginx-logs:
+  demo-api-logs:
+  agent-demo-logs:
+  system-journal:
+  logstash-nginx-data:
+  logstash-demo-data:
+  filebeat-nginx-data:
+  filebeat-demo-data:
+  filebeat-journal-data:
+  metricbeat-data:
+  elastic-agent-state:

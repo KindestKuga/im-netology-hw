@@ -13,6 +13,8 @@
 | [netology-036-zabbix](netology-036-zabbix/README.md) | Zabbix, Terraform, Ansible | автоматизированное развёртывание Zabbix Server и Agent 2, пользовательские метрики через UserParameter, discovery и dashboard |
 | [netology-039-clustering-load-balancing](netology-039-clustering-load-balancing/README.md) | HAProxy, Nginx, балансировка нагрузки | L4/L7-балансировка через HAProxy, Round Robin и Weighted Round Robin, маршрутизация по Host и связка Nginx → HAProxy → backend-серверы |
 | [netology-041-cloud-fault-tolerance](netology-041-cloud-fault-tolerance/README.md) | Yandex Cloud, отказоустойчивость, Network Load Balancer | отказоустойчивый HTTP-сервис за Yandex Network Load Balancer: две VM, Target Group и вариант с Compute Instance Group и автоматическим развёртыванием Nginx |
+| [netology-044-elk](netology-044-elk/README.md) | ELK, Filebeat, Elastic Agent | несколько вариантов доставки и разбора логов в Elasticsearch, поиск в Kibana, сбор journald и Prometheus-метрик |
+| [netology-045-rabbitmq](netology-045-rabbitmq/README.md) | RabbitMQ, Ansible, отказоустойчивость | кластер RabbitMQ из трёх нод с quorum queue, TLS, автоматической настройкой и проверкой переключения при отказе лидера |
 
 ## Как читать
 

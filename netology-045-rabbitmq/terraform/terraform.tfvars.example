@@ -1,0 +1,65 @@
+proxmox_endpoint    = "https://192.0.2.10:8006/"
+proxmox_insecure    = false
+proxmox_ssh_address = "192.0.2.10"
+proxmox_node        = "pve"
+
+file_datastore = "local"
+vm_datastore   = "local-lvm"
+
+bridge     = "vmbr0"
+gateway    = "192.0.2.1"
+dns_server = "192.0.2.53"
+
+# Cluster size is controlled only by the number of entries in this map.
+# The same Terraform resources work for 1, 3, 5 or more RabbitMQ nodes.
+vms = {
+  rmq01 = {
+    name         = "netology-045-rmq01"
+    hostname     = "rmq01"
+    vm_id        = 592
+    ipv4_cidr    = "192.0.2.11/24"
+    cpu_cores    = 1
+    memory_mb    = 1024
+    disk_size_gb = 10
+  }
+
+  rmq02 = {
+    name         = "netology-045-rmq02"
+    hostname     = "rmq02"
+    vm_id        = 593
+    ipv4_cidr    = "192.0.2.12/24"
+    cpu_cores    = 1
+    memory_mb    = 1024
+    disk_size_gb = 10
+  }
+
+  rmq03 = {
+    name         = "netology-045-rmq03"
+    hostname     = "rmq03"
+    vm_id        = 594
+    ipv4_cidr    = "192.0.2.13/24"
+    cpu_cores    = 1
+    memory_mb    = 1024
+    disk_size_gb = 10
+  }
+
+  rmq04 = {
+    name         = "netology-045-rmq04"
+    hostname     = "rmq04"
+    vm_id        = 595
+    ipv4_cidr    = "192.0.2.14/24"
+    cpu_cores    = 1
+    memory_mb    = 1024
+    disk_size_gb = 10
+  }
+
+  rmq05 = {
+    name         = "netology-045-rmq05"
+    hostname     = "rmq05"
+    vm_id        = 596
+    ipv4_cidr    = "192.0.2.15/24"
+    cpu_cores    = 1
+    memory_mb    = 1024
+    disk_size_gb = 10
+  }
+}
