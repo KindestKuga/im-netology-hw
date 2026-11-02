@@ -1,0 +1,23 @@
+# Local environment variables
+.env
+.env.*
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+*.tar
+archives/
+
+# Sakila database dumps and extracted files
+sakila-db/
+dumps/
+
+# Runtime and ephemeral directories
+runtime/
+logs/
+tmp/
+*.tmp
+*.log
+*.dump
+*.pid

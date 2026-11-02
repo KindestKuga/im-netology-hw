@@ -15,6 +15,7 @@
 | [netology-041-cloud-fault-tolerance](netology-041-cloud-fault-tolerance/README.md) | Yandex Cloud, отказоустойчивость, Network Load Balancer | отказоустойчивый HTTP-сервис за Yandex Network Load Balancer: две VM, Target Group и вариант с Compute Instance Group и автоматическим развёртыванием Nginx |
 | [netology-044-elk](netology-044-elk/README.md) | ELK, Filebeat, Elastic Agent | несколько вариантов доставки и разбора логов в Elasticsearch, поиск в Kibana, сбор journald и Prometheus-метрик |
 | [netology-045-rabbitmq](netology-045-rabbitmq/README.md) | RabbitMQ, Ansible, отказоустойчивость | кластер RabbitMQ из трёх нод с quorum queue, TLS, автоматической настройкой и проверкой переключения при отказе лидера |
+| [netology-048-sql-part-2](netology-048-sql-part-2/README.md) | MySQL, SQL | соединение таблиц через JOIN, агрегатные функции, группировка и фильтрация групп, скалярные и коррелированные подзапросы, условные выражения |
 
 ## Как читать
 
