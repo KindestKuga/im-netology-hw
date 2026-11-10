@@ -1,0 +1,49 @@
+name: netology-051-replication-part-2
+
+services:
+  pg-main:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lab}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-library}
+    volumes:
+      - pg_main_data:/var/lib/postgresql/data
+      - ./sql/main:/docker-entrypoint-initdb.d:ro
+      - ./sql:/work/sql:ro
+
+  pg-books1:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lab}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-library}
+    volumes:
+      - pg_books1_data:/var/lib/postgresql/data
+      - ./sql/books1:/docker-entrypoint-initdb.d:ro
+
+  pg-books2:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lab}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-library}
+    volumes:
+      - pg_books2_data:/var/lib/postgresql/data
+      - ./sql/books2:/docker-entrypoint-initdb.d:ro
+
+  pg-books3:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lab}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-library}
+    volumes:
+      - pg_books3_data:/var/lib/postgresql/data
+      - ./sql/books3:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  pg_main_data:
+  pg_books1_data:
+  pg_books2_data:
+  pg_books3_data:

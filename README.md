@@ -16,6 +16,7 @@
 | [netology-044-elk](netology-044-elk/README.md) | ELK, Filebeat, Elastic Agent | несколько вариантов доставки и разбора логов в Elasticsearch, поиск в Kibana, сбор journald и Prometheus-метрик |
 | [netology-045-rabbitmq](netology-045-rabbitmq/README.md) | RabbitMQ, Ansible, отказоустойчивость | кластер RabbitMQ из трёх нод с quorum queue, TLS, автоматической настройкой и проверкой переключения при отказе лидера |
 | [netology-048-sql-part-2](netology-048-sql-part-2/README.md) | MySQL, SQL | соединение таблиц через JOIN, агрегатные функции, группировка и фильтрация групп, скалярные и коррелированные подзапросы, условные выражения |
+| [netology-051-replication-part-2](netology-051-replication-part-2/README.md) | PostgreSQL, Docker Compose, postgres_fdw, шардинг | вертикальное разделение таблиц и горизонтальный шардинг на три PostgreSQL-узла, маршрутизация INSERT через CREATE RULE |
 
 ## Как читать
 
