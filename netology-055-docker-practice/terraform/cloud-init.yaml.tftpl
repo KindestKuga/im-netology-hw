@@ -1,0 +1,23 @@
+#cloud-config
+groups: [docker]
+users:
+  - name: lab
+    gecos: Lab Student User
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: [docker]
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+package_update: true
+packages:
+  - docker.io
+  - docker-compose-v2
+  - git
+  - curl
+  - ca-certificates
+
+runcmd:
+  - systemctl enable --now docker
+  - echo "Cloud-init docker provisioning completed successfully" > /var/log/cloud-init-docker-ready.log

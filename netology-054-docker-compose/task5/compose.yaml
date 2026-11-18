@@ -1,0 +1,33 @@
+name: netology-052-task5
+
+include:
+  - docker-compose.yaml
+
+services:
+  portainer:
+    image: portainer/portainer-ce:2.45.3
+
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer_data:/data
+    restart: unless-stopped
+    stop_grace_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.20"
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  portainer_data:

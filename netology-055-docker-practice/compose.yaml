@@ -1,0 +1,90 @@
+name: netology-053-docker-practice
+
+include:
+  - proxy.yaml
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    image: shvirtd-web:1.0.0
+
+    restart: always
+    init: true
+    stop_grace_period: 15s
+    networks:
+      backend:
+        ipv4_address: ${WEB_IPV4:-172.20.0.5}
+    environment:
+      DB_HOST: db
+      DB_USER: ${MYSQL_USER:-app}
+      DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      DB_NAME: ${MYSQL_DATABASE:-virtd}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c 'import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:5000/openapi.json\")' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  db:
+    image: mysql:8
+
+    restart: always
+    stop_grace_period: 30s
+    networks:
+      backend:
+        ipv4_address: ${DB_IPV4:-172.20.0.10}
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-virtd}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql -u\"$$MYSQL_USER\" -e 'SELECT 1;' \"$$MYSQL_DATABASE\" >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 25s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 1024M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${BACKEND_SUBNET:-172.20.0.0/24}
+
+volumes:
+  db_data:

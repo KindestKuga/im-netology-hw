@@ -1,0 +1,51 @@
+services:
+  reverse-proxy:
+    image: haproxy:3.0
+
+    restart: always
+    stop_grace_period: 15s
+    networks:
+      backend: {}
+    volumes:
+      - ./haproxy/reverse/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro,Z
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  ingress-proxy:
+    image: nginx:1.29.0
+
+    restart: always
+    stop_grace_period: 15s
+    networks:
+      backend: {}
+    ports:
+      - "${PUBLISH_HOST:-127.0.0.1}:8090:8090"
+    volumes:
+      - ./nginx/ingress/default.conf:/etc/nginx/conf.d/default.conf:ro,Z
+      - ./nginx/ingress/nginx.conf:/etc/nginx/nginx.conf:ro,Z
+    depends_on:
+      - reverse-proxy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

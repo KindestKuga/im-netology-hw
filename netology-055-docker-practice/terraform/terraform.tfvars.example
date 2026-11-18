@@ -1,0 +1,7 @@
+# Supplied as TF_VAR_folder_id after the existing YC environment helper.
+# An explicit folder_id here overrides that environment input; never leave a placeholder.
+# folder_id         = "REPLACE_WITH_CONFIRMED_FOLDER_ID"
+zone                = "ru-central1-a"
+trusted_ssh_cidr    = "198.51.100.25/32"
+trusted_app_cidr    = ["198.51.100.25/32"]
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"

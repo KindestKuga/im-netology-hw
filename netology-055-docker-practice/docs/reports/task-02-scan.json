@@ -1,0 +1,13 @@
+{
+  "id": "che5ggg4hdqpecmv1vbh",
+  "image_id": "crp8jhbtbepqnm0ektog",
+  "scanned_at": "2026-11-17T19:41:25.244Z",
+  "status": "READY",
+  "vulnerabilities": {
+    "high": "49",
+    "medium": "90",
+    "low": "65",
+    "undefined": "5"
+  }
+}
+

@@ -1,0 +1,21 @@
+services:
+  nginx:
+    image: 127.0.0.1:5000/custom-nginx:latest
+    container_name: task5-nginx-deployed
+    ports:
+      - "127.0.0.1:9090:80"
+    restart: unless-stopped
+    stop_grace_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"

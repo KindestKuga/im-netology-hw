@@ -17,6 +17,9 @@
 | [netology-045-rabbitmq](netology-045-rabbitmq/README.md) | RabbitMQ, Ansible, отказоустойчивость | кластер RabbitMQ из трёх нод с quorum queue, TLS, автоматической настройкой и проверкой переключения при отказе лидера |
 | [netology-048-sql-part-2](netology-048-sql-part-2/README.md) | MySQL, SQL | соединение таблиц через JOIN, агрегатные функции, группировка и фильтрация групп, скалярные и коррелированные подзапросы, условные выражения |
 | [netology-051-replication-part-2](netology-051-replication-part-2/README.md) | PostgreSQL, Docker Compose, postgres_fdw, шардинг | вертикальное разделение таблиц и горизонтальный шардинг на три PostgreSQL-узла, маршрутизация INSERT через CREATE RULE |
+| [netology-054-docker-compose](netology-054-docker-compose/README.md) | Docker, Docker Compose, Registry, Portainer | сборка и публикация образа, диагностика портов и сигналов, общие bind mounts, Compose include и развёртывание через Portainer |
+| [netology-055-docker-practice](netology-055-docker-practice/README.md) | Docker, FastAPI, MySQL, Terraform, Yandex Cloud | приложение с БД за Nginx и HAProxy, облачное развёртывание, registry и сканирование образа, бэкапы по cron и разбор слоёв образа |
+
 
 ## Как читать
 

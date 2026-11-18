@@ -1,0 +1,26 @@
+services:
+  registry:
+    image: registry:2
+
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - registry_data:/var/lib/registry
+    restart: unless-stopped
+    stop_grace_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
+        reservations:
+          cpus: "0.10"
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  registry_data:

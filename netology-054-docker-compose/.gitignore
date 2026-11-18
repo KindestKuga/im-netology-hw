@@ -1,0 +1,14 @@
+.env*
+!.env.sample
+.local/
+artifacts/
+*.log
+.terraform/
+*.tfstate*
+*.plan
+keys/
+ansible/inventory.yml
+!docs/private/experiments/sample.env
+!docs/private/experiments/Dockerfile.secret
+/from-centos.txt
+/from-host.txt

@@ -1,0 +1,2514 @@
+[
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54369",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54369",
+      "package": "libacl1",
+      "source": "trivy",
+      "version": "2.3.2-2+b1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-69720",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-69720",
+      "package": "libncursesw6",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119373",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119373",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119374",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119374",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119379",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119379",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-16742",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-16742",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-69720",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-69720",
+      "package": "libtinfo6",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-16742",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-16742",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-69720",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-69720",
+      "package": "ncurses-base",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-69720",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-69720",
+      "package": "ncurses-bin",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-9538",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-9538",
+      "package": "perl-base",
+      "source": "trivy",
+      "version": "5.40.1-6+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76642",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76642",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78408",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78408",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78409",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78409",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-78410",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-78410",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-76844",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-76844",
+      "package": "zlib1g",
+      "source": "trivy",
+      "version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "fixed_by": "1:1.3.dfsg+really1.3.1-1+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-85091",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-85091",
+      "package": "zlib1g",
+      "source": "trivy",
+      "version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "fixed_by": "1:1.3.dfsg+really1.3.1-1+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "HIGH"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-102010",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-102010",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114690",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114690",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114691",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115455",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115455",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95619",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95619",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54370",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54370",
+      "package": "libacl1",
+      "source": "trivy",
+      "version": "2.3.2-2+b1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54371",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54371",
+      "package": "libattr1",
+      "source": "trivy",
+      "version": "1:2.5.2-3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-42250",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-42250",
+      "package": "libbz2-1.0",
+      "source": "trivy",
+      "version": "1.0.8-6",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-18374",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-18374",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-19499",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-19499",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-19542",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-19542",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-5435",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-5435",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6238",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6238",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6368",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6368",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6791",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6791",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-77117",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-77117",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-80489",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-80489",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-84243",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-84243",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-8674",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-8674",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-86805",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-86805",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-89092",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-89092",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95818",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95818",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-18374",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-18374",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-19499",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-19499",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-19542",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-19542",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-5435",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-5435",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6238",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6238",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6368",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6368",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-6791",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-6791",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-77117",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-77117",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-80489",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-80489",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-84243",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-84243",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-8674",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-8674",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-86805",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-86805",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-89092",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-89092",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95818",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95818",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-102010",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-102010",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114690",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114690",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114691",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115455",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115455",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95619",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95619",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54411",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54411",
+      "package": "libpam-modules",
+      "source": "trivy",
+      "version": "1.7.0-5",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54411",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54411",
+      "package": "libpam-modules-bin",
+      "source": "trivy",
+      "version": "1.7.0-5",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54411",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54411",
+      "package": "libpam-runtime",
+      "source": "trivy",
+      "version": "1.7.0-5",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-54411",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-54411",
+      "package": "libpam0g",
+      "source": "trivy",
+      "version": "1.7.0-5",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119371",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119371",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119372",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119372",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119375",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119375",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119376",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119376",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119378",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119378",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119591",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119591",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-50812",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-50812",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-50813",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-50813",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-107496",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-107496",
+      "package": "libssl3t64",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88822",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88822",
+      "package": "libssl3t64",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88823",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88823",
+      "package": "libssl3t64",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95691",
+      "package": "libssl3t64",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95692",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95692",
+      "package": "libssl3t64",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-102010",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-102010",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114690",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114690",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-114691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-114691",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115455",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115455",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95619",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95619",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-15059",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-15059",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-15059",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-15059",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-107496",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-107496",
+      "package": "openssl",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88822",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88822",
+      "package": "openssl",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88823",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88823",
+      "package": "openssl",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95691",
+      "package": "openssl",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95692",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95692",
+      "package": "openssl",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-107496",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-107496",
+      "package": "openssl-provider-legacy",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88822",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88822",
+      "package": "openssl-provider-legacy",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-88823",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-88823",
+      "package": "openssl-provider-legacy",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95691",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95691",
+      "package": "openssl-provider-legacy",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-95692",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-95692",
+      "package": "openssl-provider-legacy",
+      "source": "trivy",
+      "version": "3.5.7-1~deb13u3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-15534",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-15534",
+      "package": "perl-base",
+      "source": "trivy",
+      "version": "5.40.1-6+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-82560",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-82560",
+      "package": "perl-base",
+      "source": "trivy",
+      "version": "5.40.1-6+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-18477",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-18477",
+      "package": "tar",
+      "source": "trivy",
+      "version": "1.35+dfsg-3.1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-18508",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-18508",
+      "package": "tar",
+      "source": "trivy",
+      "version": "1.35+dfsg-3.1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-5704",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-5704",
+      "package": "tar",
+      "source": "trivy",
+      "version": "1.35+dfsg-3.1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-3184",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-3184",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-27171",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-27171",
+      "package": "zlib1g",
+      "source": "trivy",
+      "version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "fixed_by": "1:1.3.dfsg+really1.3.1-1+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "MEDIUM"
+  },
+  {
+    "package": {
+      "name": "CVE-2011-3374",
+      "link": "https://avd.aquasec.com/nvd/cve-2011-3374",
+      "package": "apt",
+      "source": "trivy",
+      "version": "3.0.4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "TEMP-0841856-B18BAF",
+      "link": "https://security-tracker.debian.org/tracker/TEMP-0841856-B18BAF",
+      "package": "bash",
+      "source": "trivy",
+      "version": "5.2.37-2+b10",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "bsdutils",
+      "source": "trivy",
+      "version": "1:2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2017-18018",
+      "link": "https://avd.aquasec.com/nvd/cve-2017-18018",
+      "package": "coreutils",
+      "source": "trivy",
+      "version": "9.7-3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-5278",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-5278",
+      "package": "coreutils",
+      "source": "trivy",
+      "version": "9.7-3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-56391",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-56391",
+      "package": "coreutils",
+      "source": "trivy",
+      "version": "9.7-3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-56392",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-56392",
+      "package": "coreutils",
+      "source": "trivy",
+      "version": "9.7-3",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-102473",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-102473",
+      "package": "dash",
+      "source": "trivy",
+      "version": "0.5.12-12",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-102474",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-102474",
+      "package": "dash",
+      "source": "trivy",
+      "version": "0.5.12-12",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-53910",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-53910",
+      "package": "diffutils",
+      "source": "trivy",
+      "version": "1:3.10-4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115456",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115456",
+      "package": "gcc-14-base",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2011-3374",
+      "link": "https://avd.aquasec.com/nvd/cve-2011-3374",
+      "package": "libapt-pkg7.0",
+      "source": "trivy",
+      "version": "3.0.4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "libblkid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2010-4756",
+      "link": "https://avd.aquasec.com/nvd/cve-2010-4756",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2018-20796",
+      "link": "https://avd.aquasec.com/nvd/cve-2018-20796",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010022",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010022",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010023",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010023",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010024",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010024",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010025",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010025",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-9192",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-9192",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-97399",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-97399",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2010-4756",
+      "link": "https://avd.aquasec.com/nvd/cve-2010-4756",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2018-20796",
+      "link": "https://avd.aquasec.com/nvd/cve-2018-20796",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010022",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010022",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010023",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010023",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010024",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010024",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-1010025",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-1010025",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2019-9192",
+      "link": "https://avd.aquasec.com/nvd/cve-2019-9192",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-97399",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-97399",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115456",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115456",
+      "package": "libgcc-s1",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "liblastlog2-2",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "libmount1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-6141",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-6141",
+      "package": "libncursesw6",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "libsmartcols1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2021-45346",
+      "link": "https://avd.aquasec.com/nvd/cve-2021-45346",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-70873",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-70873",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-119377",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-119377",
+      "package": "libsqlite3-0",
+      "source": "trivy",
+      "version": "3.46.1-7+deb13u2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115456",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115456",
+      "package": "libstdc++6",
+      "source": "trivy",
+      "version": "14.2.0-19",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2013-4392",
+      "link": "https://avd.aquasec.com/nvd/cve-2013-4392",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31437",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31437",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31438",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31438",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31439",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31439",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-40228",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-40228",
+      "package": "libsystemd0",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-6141",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-6141",
+      "package": "libtinfo6",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2013-4392",
+      "link": "https://avd.aquasec.com/nvd/cve-2013-4392",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31437",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31437",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31438",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31438",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2023-31439",
+      "link": "https://avd.aquasec.com/nvd/cve-2023-31439",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-40228",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-40228",
+      "package": "libudev1",
+      "source": "trivy",
+      "version": "257.13-1~deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "libuuid1",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "login",
+      "source": "trivy",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2007-5686",
+      "link": "https://avd.aquasec.com/nvd/cve-2007-5686",
+      "package": "login.defs",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2024-56433",
+      "link": "https://avd.aquasec.com/nvd/cve-2024-56433",
+      "package": "login.defs",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "TEMP-0628843-DBAD28",
+      "link": "https://security-tracker.debian.org/tracker/TEMP-0628843-DBAD28",
+      "package": "login.defs",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "mount",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-6141",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-6141",
+      "package": "ncurses-base",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2025-6141",
+      "link": "https://avd.aquasec.com/nvd/cve-2025-6141",
+      "package": "ncurses-bin",
+      "source": "trivy",
+      "version": "6.5+20250216-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2007-5686",
+      "link": "https://avd.aquasec.com/nvd/cve-2007-5686",
+      "package": "passwd",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2024-56433",
+      "link": "https://avd.aquasec.com/nvd/cve-2024-56433",
+      "package": "passwd",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "TEMP-0628843-DBAD28",
+      "link": "https://security-tracker.debian.org/tracker/TEMP-0628843-DBAD28",
+      "package": "passwd",
+      "source": "trivy",
+      "version": "1:4.17.4-2",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2011-4116",
+      "link": "https://avd.aquasec.com/nvd/cve-2011-4116",
+      "package": "perl-base",
+      "source": "trivy",
+      "version": "5.40.1-6+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "TEMP-0517018-A83CE6",
+      "link": "https://security-tracker.debian.org/tracker/TEMP-0517018-A83CE6",
+      "package": "sysvinit-utils",
+      "source": "trivy",
+      "version": "3.14-4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2005-2541",
+      "link": "https://avd.aquasec.com/nvd/cve-2005-2541",
+      "package": "tar",
+      "source": "trivy",
+      "version": "1.35+dfsg-3.1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "TEMP-0290435-0B57B5",
+      "link": "https://security-tracker.debian.org/tracker/TEMP-0290435-0B57B5",
+      "package": "tar",
+      "source": "trivy",
+      "version": "1.35+dfsg-3.1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2022-0563",
+      "link": "https://avd.aquasec.com/nvd/cve-2022-0563",
+      "package": "util-linux",
+      "source": "trivy",
+      "version": "2.41.5-0+deb13u1",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "LOW"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-91094",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-91094",
+      "package": "dpkg",
+      "source": "trivy",
+      "version": "1.22.22",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "UNDEFINED"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-100290",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-100290",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "UNDEFINED"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115819",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115819",
+      "package": "libc-bin",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "UNDEFINED"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-100290",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-100290",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "UNDEFINED"
+  },
+  {
+    "package": {
+      "name": "CVE-2026-115819",
+      "link": "https://avd.aquasec.com/nvd/cve-2026-115819",
+      "package": "libc6",
+      "source": "trivy",
+      "version": "2.41-12+deb13u4",
+      "origin": "os",
+      "type": "debian"
+    },
+    "severity": "UNDEFINED"
+  }
+]
+
